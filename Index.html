@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Personal Finance Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- ========== AUTH LAYOUT (Sign In / Sign Up) ========== -->
+      <section id="auth-section" class="auth-section">
+        <!-- Sign In -->
+        <div id="signin-view" class="auth-card">
+          <h1 class="auth-title">Sign In</h1>
+          <form id="signin-form" class="auth-form">
+            <div class="form-group">
+              <label for="signin-email">Email</label>
+              <input type="email" id="signin-email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="signin-password">Password</label>
+              <input type="password" id="signin-password" required />
+            </div>
+
+            <p id="signin-error" class="error-message"></p>
+
+            <button type="submit" class="btn primary-btn full-width">
+              Sign In
+            </button>
+          </form>
+
+          <p class="auth-switch">
+            Don't have an account?
+            <button id="go-to-signup" class="link-btn" type="button">
+              Sign Up
+            </button>
+          </p>
+        </div>
+
+        <!-- Sign Up -->
+        <div id="signup-view" class="auth-card hidden">
+          <h1 class="auth-title">Create Account</h1>
+          <form id="signup-form" class="auth-form">
+            <div class="form-group">
+              <label for="signup-name">Full Name</label>
+              <input type="text" id="signup-name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input type="email" id="signup-email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="signup-password">Password</label>
+              <input
+                type="password"
+                id="signup-password"
+                minlength="6"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="signup-confirm-password">Confirm Password</label>
+              <input
+                type="password"
+                id="signup-confirm-password"
+                minlength="6"
+                required
+              />
+            </div>
+
+            <p id="signup-error" class="error-message"></p>
+            <p id="signup-success" class="success-message"></p>
+
+            <button type="submit" class="btn primary-btn full-width">
+              Sign Up
+            </button>
+          </form>
+
+          <p class="auth-switch">
+            Already have an account?
+            <button id="go-to-signin" class="link-btn" type="button">
+              Sign In
+            </button>
+          </p>
+        </div>
+      </section>
+
+      <!-- ========== DASHBOARD ========== -->
+      <section id="dashboard-section" class="dashboard-section hidden">
+        <header class="top-bar">
+          <div>
+            <h1 class="app-title">Personal Finance Tracker</h1>
+            <p id="welcome-text" class="welcome-text"></p>
+          </div>
+          <button id="logout-btn" class="btn outline-btn">Logout</button>
+        </header>
+
+        <main class="dashboard-layout">
+          <!-- Left: Add Expense + List -->
+          <section class="card card-column">
+            <h2>Add Expense</h2>
+            <form id="expense-form" class="expense-form">
+              <div class="form-group">
+                <label for="expense-title">Title</label>
+                <input
+                  type="text"
+                  id="expense-title"
+                  required
+                  placeholder="e.g. Groceries"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="expense-amount">Amount ($$)</label>
+                <input
+                  type="number"
+                  id="expense-amount"
+                  min="0.01"
+                  step="0.01"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="expense-category">Category</label>
+                <select id="expense-category" required>
+                  <option value="">Select category</option>
+                  <option value="Food">Food</option>
+                  <option value="Transport">Transport</option>
+                  <option value="Housing">Housing</option>
+                  <option value="Utilities">Utilities</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Health">Health</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="expense-date">Date</label>
+                <input type="date" id="expense-date" required />
+              </div>
+
+              <button type="submit" class="btn primary-btn full-width">
+                Add Expense
+              </button>
+            </form>
+
+            <h2 class="section-title">Recent Expenses</h2>
+            <ul id="expense-list" class="expense-list"></ul>
+          </section>
+
+          <!-- Right: Summary + Pie Chart -->
+          <section class="card card-column">
+            <h2>Summary</h2>
+            <div class="summary-grid">
+              <div class="summary-item">
+                <p class="summary-label">Total Expenses</p>
+                <p id="total-expenses" class="summary-value">$$0.00$$</p>
+              </div>
+              <div class="summary-item">
+                <p class="summary-label">Number of Transactions</p>
+                <p id="total-transactions" class="summary-value">0</p>
+              </div>
+              <div class="summary-item">
+                <p class="summary-label">Average Per Transaction</p>
+                <p id="average-expense" class="summary-value">$$0.00$$</p>
+              </div>
+            </div>
+
+            <h2 class="section-title">Spending Breakdown</h2>
+            <div class="chart-container">
+              <canvas id="expense-chart"></canvas>
+              <p id="no-data-text" class="no-data-text hidden">
+                Add some expenses to see your spending breakdown.
+              </p>
+            </div>
+
+            <ul id="category-list" class="category-list"></ul>
+          </section>
+        </main>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
