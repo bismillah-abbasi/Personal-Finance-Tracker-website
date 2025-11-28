@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Personal Finance Tracker - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">Personal Finance Tracker</h1>
+      <div class="header-right">
+        <span id="welcomeText" class="welcome"></span>
+        <button id="logoutBtn" class="btn btn-outline">Logout</button>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="panel panel-form">
+        <h2>Add Expense</h2>
+        <form id="expenseForm" class="form">
+          <div class="form-row">
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" placeholder="e.g., Groceries" required />
+          </div>
+          <div class="form-row">
+            <label for="amount">Amount (USD)</label>
+            <input id="amount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required />
+          </div>
+          <div class="form-row">
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+              <option value="">Select a category</option>
+              <option>Food</option>
+              <option>Transport</option>
+              <option>Rent</option>
+              <option>Utilities</option>
+              <option>Entertainment</option>
+              <option>Health</option>
+              <option>Education</option>
+              <option>Shopping</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date" required />
+          </div>
+          <div class="form-row form-actions">
+            <button type="submit" class="btn">Add Expense</button>
+            <button type="button" id="clearBtn" class="btn btn-ghost">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel panel-summary">
+        <h2>Summary (This Month)</h2>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h3>Total Spent</h3>
+            <p id="totalSpent">$0.00</p>
+          </div>
+          <div class="summary-card">
+            <h3>Highest Category</h3>
+            <p id="highestCategory">—</p>
+          </div>
+          <div class="summary-card">
+            <h3>Lowest Category</h3>
+            <p id="lowestCategory">—</p>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <canvas id="pieChart" width="400" height="300"></canvas>
+          <div id="chartLegend" class="legend"></div>
+        </div>
+      </section>
+
+      <section class="panel panel-list full-width">
+        <h2>Expenses</h2>
+        <div id="expensesContainer" class="expenses-container">
+          <!-- Table / cards will render here -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Built with HTML, CSS & JavaScript • All data stored locally in your browser</p>
+    </footer>
+  </div>
+
+  <script src="auth.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
